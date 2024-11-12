@@ -42,12 +42,11 @@ def handle_hello():
 def get_members_by_id(id):
 
     # this is how you can use the Family datastructure by calling its methods
-    members = jackson_family.get_all_members()
-    for people in members:
-        if id== people.get("id"):
-            return jsonify(people), 200
+    member = jackson_family.get_member(id)
+    if member != None:
+        return jsonify(member), 200
    
-    return jsonify({"msj":"not found"}), 404 
+    return jsonify({"msj":"not found"}), 404
 
 @app.route('/member', methods=['POST'])
 def add_member():
